@@ -1,15 +1,12 @@
-import Link from 'next/link'
-import Layout from '../components/Layout'
+import Head from "next/head"
 
 const IndexPage = () => (
-  <Layout title="Home | Next.js + TypeScript Example">
-    <h1>Hello Next.js 👋</h1>
-    <p>
-      <Link href="/about">
-        <a>About</a>
-      </Link>
-    </p>
-  </Layout>
+  <div>
+    <Head>
+      <title>Goolps!</title>
+    </Head>
+    <h1>Salve salve mama's beef</h1>
+  </div>
 )
 
 export default IndexPage
