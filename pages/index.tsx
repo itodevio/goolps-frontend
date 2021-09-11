@@ -1,6 +1,7 @@
 import Head from "next/head"
 import { Tabs, Tab } from 'grommet';
-import NewProduct from '../components/NewProduct';
+import NewProduct from '../components/NewProduct/NewProduct';
+import style from "./index.module.scss";
 
 const IndexPage = () => {
   return (
@@ -11,8 +12,10 @@ const IndexPage = () => {
 
       <Tabs>
         <Tab title="PRODUTO">
-          <h1>Novo Produto</h1>
-          <NewProduct ingredients={[{ id: 'sdoifjhg098dsfh9', name: 'Cebola' }]} />
+          <div className={style.container}>
+            <h1 style={{ fontSize: '2rem', margin: '3rem 0', fontWeight: 500 }}>Novo Produto</h1>
+            <NewProduct ingredients={[{ id: 'sdoifjhg098dsfh9', name: 'Cebola' }]} />
+          </div>
         </Tab>
         <Tab title="INGREDIENTE">
 
