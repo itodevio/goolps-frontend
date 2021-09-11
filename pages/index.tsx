@@ -1,9 +1,9 @@
 import React from "react";
 import Head from "next/head";
 import { Tabs, Tab } from "grommet";
-import NewProduct from "../components/NewProduct";
 import NewProductTab from "components/NewProductTab";
 import styles from "./index.module.scss";
+import NewProduct from "components/NewProduct/NewProduct";
 
 const IndexPage = () => {
   return (
