@@ -1,13 +1,17 @@
-import App from 'next/app'
+import type { AppProps /*, AppContext */ } from "next/app";
 import { Grommet, grommet as grommetTheme } from 'grommet'
+import Navbar from "../components/Navbar";
+import "styles/globals.css";
 
-export default class MyApp extends App {
-  render() {
-    const { Component, pageProps } = this.props
-    return (
-      <Grommet theme={grommetTheme}>
+function MyApp({ Component, pageProps }: AppProps) {
+  return (
+    <Grommet theme={grommetTheme}>
+      <Navbar />
+      <div className="appContainer">
         <Component {...pageProps} />
-      </Grommet>
-    )
-  }
+      </div>
+    </Grommet>
+  );
 }
+
+export default MyApp;
