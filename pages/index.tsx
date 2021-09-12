@@ -1,7 +1,6 @@
 import React from "react";
 import Head from "next/head";
 import { Tabs, Tab } from "grommet";
-import NewProductTab from "components/NewProductTab";
 import styles from "./index.module.scss";
 import NewProduct from "components/NewProduct/NewProduct";
 
@@ -30,9 +29,7 @@ const IndexPage = () => {
             />
           </div>
         </Tab>
-        <Tab title="INGREDIENTE">
-          <NewProductTab />
-        </Tab>
+        <Tab title="INGREDIENTE"></Tab>
       </Tabs>
     </div>
   );

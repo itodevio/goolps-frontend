@@ -1,10 +1,10 @@
 import type { AppProps /*, AppContext */ } from "next/app";
 import { Grommet, grommet as grommetTheme } from "grommet";
 import Navbar from "../components/Navbar";
-import "styles/globals.css";
 import React from "react";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { Toaster } from "react-hot-toast";
+import "styles/globals.css";
 
 const queryClient = new QueryClient();
 

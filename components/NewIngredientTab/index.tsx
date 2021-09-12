@@ -1,13 +1,13 @@
 import React from "react";
 import { useFormik } from "formik";
 import { Button, Select, TextArea, TextInput } from "grommet";
-import styles from "./newProductTab.module.scss";
+import styles from "./NewIngredientTab.module.scss";
 import { useMutation } from "react-query";
 import { Ingredient } from "interfaces/Ingredient";
 import IngredientService from "services/Ingredient.service";
 import toast from "react-hot-toast";
 
-const NewProductTab = () => {
+const NewIngredientTab = () => {
   const newProductMutation = useMutation("newProductMutation", (ingredient: Ingredient) =>
     IngredientService.store(ingredient)
   );
@@ -38,7 +38,7 @@ const NewProductTab = () => {
           e.preventDefault();
           formik.handleSubmit(e);
         }}
-        className={styles.newProductTab}
+        className={styles.NewIngredientTab}
         action="POST"
       >
         <TextInput
@@ -86,4 +86,4 @@ const NewProductTab = () => {
   );
 };
 
-export default NewProductTab;
+export default NewIngredientTab;

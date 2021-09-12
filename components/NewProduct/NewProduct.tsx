@@ -1,5 +1,17 @@
-import { useState } from 'react';
-import { Layer, TextInput, Select, Button, TextArea, Card, CardBody, CardFooter, CardHeader, Box, Menu } from 'grommet';
+import { useState } from "react";
+import {
+  Layer,
+  TextInput,
+  Select,
+  Button,
+  TextArea,
+  Card,
+  CardBody,
+  CardFooter,
+  CardHeader,
+  Box,
+  Menu,
+} from "grommet";
 import type { StoredIngredient } from "../../interfaces/Ingredient";
 import style from "./NewProduct.module.scss";
 
