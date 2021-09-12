@@ -1,6 +1,10 @@
 import { Product, StoredProduct } from "interfaces/Product.interface";
 import { ApiClient } from "utils/apiClient";
 
+interface UpdateProps extends Product {
+  _id: string
+}
+
 const ProductService = {
   async get() {
     const { data } = await ApiClient.get<StoredProduct[]>(`/products`);
@@ -10,7 +14,7 @@ const ProductService = {
     const { data } = await ApiClient.post<StoredProduct>(`/products`, product);
     return data;
   },
-  async update(product: StoredProduct) {
+  async update(product: UpdateProps) {
     const { data } = await ApiClient.put<StoredProduct>(`/products/${product._id}/update`, product);
     return data;
   },

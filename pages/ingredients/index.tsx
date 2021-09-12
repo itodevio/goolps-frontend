@@ -7,9 +7,9 @@ import Column from "antd/lib/table/Column";
 import { Edit, Search, Trash } from "grommet-icons";
 import { ExclamationCircleOutlined } from "@ant-design/icons";
 import { StoredIngredient } from "interfaces/Ingredient";
-import EditIngredientModal from "./EditIngredient.modal";
-import NewIngredientModal from "./NewIngredient.modal";
-import IngredientDetailsModal from "./IngredientDetails.model";
+import EditIngredientModal from "../../components/Ingredients/EditIngredient.modal";
+import NewIngredientModal from "../../components/Ingredients/NewIngredient.modal";
+import IngredientDetailsModal from "../../components/Ingredients/IngredientDetails.model";
 
 const { confirm } = Modal;
 

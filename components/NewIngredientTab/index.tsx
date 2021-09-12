@@ -8,12 +8,12 @@ import IngredientService from "services/Ingredient.service";
 import toast from "react-hot-toast";
 
 const NewIngredientTab = () => {
-  const newProductMutation = useMutation("newProductMutation", (ingredient: Ingredient) =>
+  const newIngredientMutation = useMutation("newIngredientMutation", (ingredient: Ingredient) =>
     IngredientService.store(ingredient)
   );
 
   const onFormSubmit = (values: Ingredient) => {
-    toast.promise(newProductMutation.mutateAsync(values), {
+    toast.promise(newIngredientMutation.mutateAsync(values), {
       loading: "Carregando...",
       success: "Ingrediente cadastrado com sucesso",
       error: "Erro ao cadastrar Ingrediente",

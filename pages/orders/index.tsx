@@ -7,9 +7,9 @@ import { StoredOrder } from "interfaces/Order.interface";
 import React, { useState } from "react";
 import { useMutation, useQuery, useQueryClient } from "react-query";
 import OrderService from "services/Orders.service";
-import EditOrderModal from "./EditOrder.modal";
-import NewOrderModal from "./NewOrder.modal";
-import OrderDetailsModal from "./OrderDetails.modal";
+import EditOrderModal from "../../components/Orders/EditOrder.modal";
+import NewOrderModal from "../../components/Orders/NewOrder.modal";
+import OrderDetailsModal from "../../components/Orders/OrderDetails.modal";
 
 const { confirm } = Modal;
 
