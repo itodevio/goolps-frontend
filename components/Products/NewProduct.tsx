@@ -66,6 +66,7 @@ const NewProduct = ({ ingredients, categories, product, edit = false }: { ingred
     <>
       <form onSubmit={handleSubmit} className={style.formContainer}>
         <TextInput
+          id="name"
           placeholder="Nome do produto"
           value={value.name}
           onChange={(e) => setValue((v) => ({ ...v, name: e.target.value }))}
@@ -73,35 +74,38 @@ const NewProduct = ({ ingredients, categories, product, edit = false }: { ingred
 
         <div className={style.inputSection}>
           <TextInput
+            id="price"
             placeholder="Preço"
             value={value.price}
             type="number"
             onChange={(e) => setValue((v) => ({ ...v, price: e.target.value }))}
           />
           <TextInput
+            id="category"
             placeholder="Categoria"
             value={value.category}
-            suggestions={categories.map(c => c.displayName)}
+            suggestions={categories.map((c) => c.displayName)}
             onChange={(e) => setValue((v) => ({ ...v, category: e.target.value }))}
           />
           <Box className={style.flex2}>
             <Menu
               label="Ingredientes"
               items={ingredients.map((i) => {
-                const find = value.ingredients.find(ig => ig.name === i.name)
+                const find = value.ingredients.find((ig) => ig.name === i.name);
                 return {
-                  label: `${i.name}${find ? `- ${find.quantity}${find.unit}` : ''}`,
+                  label: `${i.name}${find ? `- ${find.quantity}${find.unit}` : ""}`,
                   onClick: () => {
                     setQuantity(find ? find.quantity : 1);
                     setModal(i);
                   },
-                }
+                };
               })}
             />
           </Box>
         </div>
 
         <TextArea
+          id="description"
           placeholder="Descrição"
           value={value.description}
           className={style.textAreaField}
@@ -109,7 +113,13 @@ const NewProduct = ({ ingredients, categories, product, edit = false }: { ingred
         />
 
         <Box justify="end">
-          <Button alignSelf="end" className={style.createButton} type="submit" primary label={edit ? 'EDITAR' : "CRIAR"} />
+          <Button
+            alignSelf="end"
+            className={style.createButton}
+            type="submit"
+            primary
+            label={edit ? "EDITAR" : "CRIAR"}
+          />
         </Box>
       </form>
 
@@ -126,22 +136,22 @@ const NewProduct = ({ ingredients, categories, product, edit = false }: { ingred
                   e.preventDefault();
 
                   setValue((v) => {
-                    const tempIngredients = [...v.ingredients]
-                    const idx = tempIngredients.findIndex(i => i.name === modal.name)
+                    const tempIngredients = [...v.ingredients];
+                    const idx = tempIngredients.findIndex((i) => i.name === modal.name);
 
                     if (idx !== -1) {
                       tempIngredients[idx] = { ...tempIngredients[idx], quantity };
                     } else {
                       tempIngredients.push({
                         ...modal,
-                        quantity
-                      })
+                        quantity,
+                      });
                     }
 
                     return {
                       ...v,
                       ingredients: tempIngredients,
-                    }
+                    };
                   });
                   setModal(null);
                 }}

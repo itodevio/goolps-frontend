@@ -121,6 +121,7 @@ const NewOrderModal: React.FC<NewOrderModalProps> = (props) => {
                 <Select
                   id="paymentType"
                   name="paymentType"
+                  defaultValue="DINHEIRO"
                   options={[
                     "DINHEIRO",
                     "DEBITO",

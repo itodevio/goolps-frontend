@@ -10,6 +10,7 @@ import { StoredIngredient } from "interfaces/Ingredient";
 import EditIngredientModal from "../../components/Ingredients/EditIngredient.modal";
 import NewIngredientModal from "../../components/Ingredients/NewIngredient.modal";
 import IngredientDetailsModal from "../../components/Ingredients/IngredientDetails.model";
+import Head from "next/head";
 
 const { confirm } = Modal;
 
@@ -58,6 +59,9 @@ const Ingredients = () => {
 
   return (
     <>
+      <Head>
+        <title>Goolps! - Ingredientes</title>
+      </Head>
       <NewIngredientModal
         visible={visibleModal === "newIngredient"}
         toggle={() => toggleVisibleModal("newIngredient")}

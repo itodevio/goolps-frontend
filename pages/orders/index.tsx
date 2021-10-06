@@ -4,9 +4,11 @@ import Column from "antd/lib/table/Column";
 import { Button, Heading } from "grommet";
 import { Search, Edit, Trash } from "grommet-icons";
 import { StoredOrder } from "interfaces/Order.interface";
+import Head from "next/head";
 import React, { useState } from "react";
 import { useMutation, useQuery, useQueryClient } from "react-query";
 import OrderService from "services/Orders.service";
+import { getPortPaymentType } from "utils/order.utils";
 import EditOrderModal from "../../components/Orders/EditOrder.modal";
 import NewOrderModal from "../../components/Orders/NewOrder.modal";
 import OrderDetailsModal from "../../components/Orders/OrderDetails.modal";
@@ -35,7 +37,7 @@ const Orders = () => {
     (OrderId: string) => OrderService.delete(OrderId),
     {
       onSuccess: () => {
-        queryClient.setQueryData("ingredientsQuery", (oldData: StoredOrder[]) => {
+        queryClient.setQueryData("ordersQuery", (oldData: StoredOrder[]) => {
           return oldData.filter((data) => data._id !== orderToAction._id);
         });
       },
@@ -58,6 +60,9 @@ const Orders = () => {
 
   return (
     <>
+      <Head>
+        <title>Goolps! - Pedidos</title>
+      </Head>
       <NewOrderModal
         visible={visibleModal === "newOrderModal"}
         toggle={() => toggleVisibleModal("newOrderModal")}
@@ -86,7 +91,12 @@ const Orders = () => {
         <Column key="tableNumber" title="Mesa" dataIndex="tableNumber" />
         <Column key="totalPrice" title="Valor total" dataIndex="totalPrice" />
         <Column key="changeFor" title="Troco para" dataIndex="changeFor" />
-        <Column key="paymentType" title="Forma de pagamento" dataIndex="paymentType" />
+        <Column
+          key="paymentType"
+          title="Forma de pagamento"
+          dataIndex="paymentType"
+          render={(text) => getPortPaymentType(text)}
+        />
         <Column
           title="Ações"
           key="actions"

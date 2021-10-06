@@ -7,18 +7,19 @@ import { StoredProduct } from "interfaces/Product.interface";
 import React, { useState } from "react";
 import { useMutation, useQuery, useQueryClient } from "react-query";
 import ProductService from "services/Product.service";
-import NewProductForm from 'components/Products/NewProduct';
-import ProductDetailModal from 'components/Products/ProductDetails.modal';
+import NewProductForm from "components/Products/NewProduct";
+import ProductDetailModal from "components/Products/ProductDetails.modal";
 import IngredientService from "services/Ingredient.service";
 import ProductCategoryService from "services/ProductCategorie.service";
 import { StoredIngredient } from "interfaces/Ingredient";
 import { StoredProductCategory } from "interfaces/ProductCategory.interface";
 import { Edit, Trash, Search } from "grommet-icons";
+import Head from "next/head";
 
 interface Props {
-  ingredients: StoredIngredient[]
-  categories: StoredProductCategory[]
-  products: StoredProduct[]
+  ingredients: StoredIngredient[];
+  categories: StoredProductCategory[];
+  products: StoredProduct[];
 }
 
 const Products = ({ ingredients, categories, products }) => {
@@ -44,7 +45,7 @@ const Products = ({ ingredients, categories, products }) => {
     (productId: string) => ProductService.delete(productId),
     {
       onSuccess: () => {
-        queryClient.setQueryData("ingredientsQuery", (oldData: StoredProduct[]) => {
+        queryClient.setQueryData("productsQuery", (oldData: StoredProduct[]) => {
           return oldData.filter((data) => data._id !== productToAction._id);
         });
       },
@@ -67,40 +68,56 @@ const Products = ({ ingredients, categories, products }) => {
 
   return (
     <>
-      {
-        visibleModal === 'newProduct' &&
-        <Layer
-          onClickOutside={() => setVisibleModal('')}
-        >
+      <Head>
+        <title>Goolps! - Produtos</title>
+      </Head>
+      {visibleModal === "newProduct" && (
+        <Layer onClickOutside={() => setVisibleModal("")}>
           <Box pad="large" direction="column">
-            <h1 style={{ fontSize: '2.5rem', fontWeight: 500, lineHeight: 'normal', marginBottom: '2rem' }}>Novo Produto</h1>
-            <NewProductForm
-              ingredients={ingredients}
-              categories={categories}
-            />
+            <h1
+              style={{
+                fontSize: "2.5rem",
+                fontWeight: 500,
+                lineHeight: "normal",
+                marginBottom: "2rem",
+              }}
+            >
+              Novo Produto
+            </h1>
+            <NewProductForm ingredients={ingredients} categories={categories} />
           </Box>
         </Layer>
-      }
-      {
-        visibleModal === 'detailProduct' &&
-        <Layer
-          onClickOutside={() => setVisibleModal('')}
-        >
+      )}
+      {visibleModal === "detailProduct" && (
+        <Layer onClickOutside={() => setVisibleModal("")}>
           <Box pad="large" direction="column">
-            <h1 style={{ fontSize: '2.5rem', fontWeight: 500, lineHeight: 'normal', marginBottom: '2rem' }}>Detalhes</h1>
-            <ProductDetailModal
-              product={productToAction}
-            />
+            <h1
+              style={{
+                fontSize: "2.5rem",
+                fontWeight: 500,
+                lineHeight: "normal",
+                marginBottom: "2rem",
+              }}
+            >
+              Detalhes
+            </h1>
+            <ProductDetailModal product={productToAction} />
           </Box>
         </Layer>
-      }
-      {
-        visibleModal === 'editProduct' &&
-        <Layer
-          onClickOutside={() => setVisibleModal('')}
-        >
+      )}
+      {visibleModal === "editProduct" && (
+        <Layer onClickOutside={() => setVisibleModal("")}>
           <Box pad="large" direction="column">
-            <h1 style={{ fontSize: '2.5rem', fontWeight: 500, lineHeight: 'normal', marginBottom: '2rem' }}>Editar Produto</h1>
+            <h1
+              style={{
+                fontSize: "2.5rem",
+                fontWeight: 500,
+                lineHeight: "normal",
+                marginBottom: "2rem",
+              }}
+            >
+              Editar Produto
+            </h1>
             <NewProductForm
               ingredients={ingredients}
               categories={categories}
@@ -109,12 +126,12 @@ const Products = ({ ingredients, categories, products }) => {
             />
           </Box>
         </Layer>
-      }
+      )}
       <div className="flex justify-between">
         <Heading margin="none" size="small">
           Produtos
         </Heading>
-        <Button primary label="Novo Produto" onClick={() => setVisibleModal('newProduct')} />
+        <Button primary label="Novo Produto" onClick={() => setVisibleModal("newProduct")} />
       </div>
       <Table className="mt-6" dataSource={data} loading={isLoading}>
         <Column key="name" title="Nome" dataIndex="name" />
@@ -174,9 +191,9 @@ export async function getServerSideProps() {
     props: {
       ingredients,
       categories,
-      products
-    }
-  }
+      products,
+    },
+  };
 }
 
 export default Products;
