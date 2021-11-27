@@ -3,7 +3,7 @@ import { useFormik } from "formik";
 import { Button, Select, TextArea, TextInput } from "grommet";
 import styles from "./NewIngredientTab.module.scss";
 import { useMutation } from "react-query";
-import { Ingredient } from "interfaces/Ingredient";
+import { Ingredient } from "interfaces/Ingredient.interface";
 import IngredientService from "services/Ingredient.service";
 import toast from "react-hot-toast";
 

@@ -1,6 +1,6 @@
 import { Descriptions } from "antd";
 import Modal from "components/Modal";
-import { Ingredient } from "interfaces/Ingredient";
+import { Ingredient } from "interfaces/Ingredient.interface";
 import React from "react";
 
 interface IngredientDetailsModalProps {

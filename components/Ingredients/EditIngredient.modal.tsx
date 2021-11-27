@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import Modal from "components/Modal";
 import { useFormik } from "formik";
 import { TextInput, Select, TextArea, Button } from "grommet";
-import { Ingredient, StoredIngredient } from "interfaces/Ingredient";
+import { Ingredient, StoredIngredient } from "interfaces/Ingredient.interface";
 import toast from "react-hot-toast";
 import { useMutation, useQueryClient } from "react-query";
 import IngredientService from "services/Ingredient.service";

@@ -1,4 +1,4 @@
-import { StoredIngredient, QuantityIngredient } from "./Ingredient";
+import { StoredIngredient, QuantityIngredient } from "./Ingredient.interface";
 import { ProductCategory } from "./ProductCategory.interface";
 
 export interface ProductSchema {

@@ -1,4 +1,4 @@
-import { Ingredient, StoredIngredient } from "interfaces/Ingredient";
+import { Ingredient, StoredIngredient } from "interfaces/Ingredient.interface";
 import { ApiClient } from "utils/apiClient";
 
 const IngredientService = {

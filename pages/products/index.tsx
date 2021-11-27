@@ -11,7 +11,7 @@ import NewProductForm from "components/Products/NewProduct";
 import ProductDetailModal from "components/Products/ProductDetails.modal";
 import IngredientService from "services/Ingredient.service";
 import ProductCategoryService from "services/ProductCategorie.service";
-import { StoredIngredient } from "interfaces/Ingredient";
+import { StoredIngredient } from "interfaces/Ingredient.interface";
 import { StoredProductCategory } from "interfaces/ProductCategory.interface";
 import { Edit, Trash, Search } from "grommet-icons";
 import Head from "next/head";
@@ -131,9 +131,9 @@ const Products = ({ ingredients, categories, products }) => {
         <Heading margin="none" size="small">
           Produtos
         </Heading>
-        <Button primary label="Novo Produto" onClick={() => setVisibleModal("newProduct")} />
+        <Button primary label="Novo Produto" onClick={() => toggleVisibleModal("newProduct")} />
       </div>
-      <Table className="mt-6" dataSource={data} loading={isLoading}>
+      <Table className="mt-6" dataSource={data} loading={isLoading} rowKey="_id">
         <Column key="name" title="Nome" dataIndex="name" />
         <Column key="price" title="Preço" dataIndex="price" />
         <Column
@@ -151,7 +151,7 @@ const Products = ({ ingredients, categories, products }) => {
                 className="cursor-pointer"
                 onClick={() => {
                   setProductToAction(record);
-                  setVisibleModal("detailProduct");
+                  toggleVisibleModal("detailProduct");
                 }}
               >
                 <Search />
@@ -160,7 +160,7 @@ const Products = ({ ingredients, categories, products }) => {
                 className="cursor-pointer"
                 onClick={() => {
                   setProductToAction(record);
-                  setVisibleModal("editProduct");
+                  toggleVisibleModal("editProduct");
                 }}
               >
                 <Edit />
@@ -181,19 +181,5 @@ const Products = ({ ingredients, categories, products }) => {
     </>
   );
 };
-
-export async function getServerSideProps() {
-  const ingredients = await IngredientService.get();
-  const categories = await ProductCategoryService.get();
-  const products = await ProductService.get();
-
-  return {
-    props: {
-      ingredients,
-      categories,
-      products,
-    },
-  };
-}
 
 export default Products;

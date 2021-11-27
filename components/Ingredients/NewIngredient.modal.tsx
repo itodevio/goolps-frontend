@@ -1,7 +1,7 @@
 import Modal from "components/Modal";
 import { useFormik } from "formik";
 import { TextInput, Select, TextArea, Button } from "grommet";
-import { Ingredient } from "interfaces/Ingredient";
+import { Ingredient } from "interfaces/Ingredient.interface";
 import React, { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import { useMutation, useQueryClient } from "react-query";

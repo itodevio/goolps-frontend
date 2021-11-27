@@ -6,7 +6,7 @@ import { Modal, Space, Table } from "antd";
 import Column from "antd/lib/table/Column";
 import { Edit, Search, Trash } from "grommet-icons";
 import { ExclamationCircleOutlined } from "@ant-design/icons";
-import { StoredIngredient } from "interfaces/Ingredient";
+import { StoredIngredient } from "interfaces/Ingredient.interface";
 import EditIngredientModal from "../../components/Ingredients/EditIngredient.modal";
 import NewIngredientModal from "../../components/Ingredients/NewIngredient.modal";
 import IngredientDetailsModal from "../../components/Ingredients/IngredientDetails.model";

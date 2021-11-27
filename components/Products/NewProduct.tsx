@@ -1,64 +1,74 @@
 import { useState } from "react";
-import {
-  Layer,
-  TextInput,
-  Button,
-  TextArea,
-  Card,
-  CardBody,
-  CardHeader,
-  Box,
-  Menu,
-} from "grommet";
-import toast from 'react-hot-toast';
+import { Layer, TextInput, Button, TextArea, Card, CardBody, CardHeader, Box, Menu } from "grommet";
+import toast from "react-hot-toast";
 import { useMutation } from "react-query";
-import { StoredIngredient } from "../../interfaces/Ingredient";
+import { StoredIngredient } from "../../interfaces/Ingredient.interface";
 import { Product, StoredProduct } from "interfaces/Product.interface";
 import style from "./NewProduct.module.scss";
 import ProductService from "services/Product.service";
 import { StoredProductCategory } from "interfaces/ProductCategory.interface";
 
 interface MutationProps extends Product {
-  _id: string
+  _id: string;
 }
 
-const NewProduct = ({ ingredients, categories, product, edit = false }: { ingredients: Array<StoredIngredient>, categories: Array<StoredProductCategory>, product?: StoredProduct, edit?: boolean }) => {
+const NewProduct = ({
+  ingredients,
+  categories,
+  product,
+  edit = false,
+}: {
+  ingredients: Array<StoredIngredient>;
+  categories: Array<StoredProductCategory>;
+  product?: StoredProduct;
+  edit?: boolean;
+}) => {
   const [value, setValue] = useState({
-    name: product?.name ?? '',
-    price: product?.price.toString() ?? '',
-    category: product?.category?.displayName ?? '',
-    ingredients: product?.ingredients.map(i => ({ ...i, quantity: 0 })) ?? [],
-    description: product?.description ?? '',
+    name: product?.name ?? "",
+    price: product?.price.toString() ?? "",
+    category: product?.category?.displayName ?? "",
+    ingredients: product?.ingredients.map((i) => ({ ...i, quantity: 0 })) ?? [],
+    description: product?.description ?? "",
   });
   const [modal, setModal] = useState(null);
   const [quantity, setQuantity] = useState(0);
 
-  const newProductMutation = useMutation('newProductMutation', (product: Product) => ProductService.store(product))
-  const editProductMutation = useMutation('editProductMutation', (product: MutationProps) => ProductService.update(product))
+  const newProductMutation = useMutation("newProductMutation", (product: Product) =>
+    ProductService.store(product)
+  );
+  const editProductMutation = useMutation("editProductMutation", (product: MutationProps) =>
+    ProductService.update(product)
+  );
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
     if (edit) {
-      toast.promise(editProductMutation.mutateAsync({
-        ...value,
-        price: parseFloat(value.price),
-        _id: product._id
-      }), {
-        loading: 'Carregando...',
-        success: 'Produto cadastrado com sucesso',
-        error: 'Erro ao cadastrar Produto'
-      })
+      toast.promise(
+        editProductMutation.mutateAsync({
+          ...value,
+          price: parseFloat(value.price),
+          _id: product._id,
+        }),
+        {
+          loading: "Carregando...",
+          success: "Produto cadastrado com sucesso",
+          error: "Erro ao cadastrar Produto",
+        }
+      );
     } else {
-      toast.promise(newProductMutation.mutateAsync({
-        ...value,
-        price: parseFloat(value.price),
-        ingredients: value.ingredients.map(i => ({ _id: i._id, quantity: i.quantity }))
-      }), {
-        loading: 'Carregando...',
-        success: 'Produto cadastrado com sucesso',
-        error: 'Erro ao cadastrar Produto'
-      })
+      toast.promise(
+        newProductMutation.mutateAsync({
+          ...value,
+          price: parseFloat(value.price),
+          ingredients: value.ingredients.map((i) => ({ _id: i._id, quantity: i.quantity })),
+        }),
+        {
+          loading: "Carregando...",
+          success: "Produto cadastrado com sucesso",
+          error: "Erro ao cadastrar Produto",
+        }
+      );
     }
   };
 
